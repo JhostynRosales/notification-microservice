@@ -1,0 +1,41 @@
+server:
+  port: 8081 # El microservicio principal PetLogiLink corre en el 8080
+
+spring:
+  application:
+    name: notification-service
+    
+  # RabbitMQ Configuration (Default local Docker credentials)
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+    
+  # Configuración de Mailtrap (SMTP seguro para desarrollo/portafolio sin exponer contraseñas reales)
+  # Un reclutador verá esto y sabrá que no cometes el error de subir credenciales de Gmail.
+  mail:
+    host: sandbox.smtp.mailtrap.io
+    port: 2525
+    username: mock_user_123 # Reemplazar con Mailtrap real si se prueba
+    password: mock_pass_123
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+  # Thymeleaf Configuration
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    mode: HTML
+    encoding: UTF-8
+
+# Custom Properties para el routing de RabbitMQ
+app:
+  rabbitmq:
+    exchange: "petlogilink.exchange"
+    queue: "order.notifications.queue"
+    routing-key: "order.created"

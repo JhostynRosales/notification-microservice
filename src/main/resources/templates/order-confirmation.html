@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Confirmación de Pedido</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f7f6; margin: 0; padding: 20px; }
+        .container { max-width: 600px; margin: 0 auto; background: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        .header { background-color: #4f46e5; color: white; padding: 30px 20px; text-align: center; }
+        .header h1 { margin: 0; font-size: 24px; }
+        .content { padding: 30px 20px; color: #333; line-height: 1.6; }
+        .order-details { background-color: #f8fafc; border-radius: 6px; padding: 15px; margin: 20px 0; border-left: 4px solid #4f46e5; }
+        .items-table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+        .items-table th, .items-table td { padding: 12px; text-align: left; border-bottom: 1px solid #e2e8f0; }
+        .items-table th { background-color: #f1f5f9; color: #475569; font-weight: 600; }
+        .total-row { font-weight: bold; font-size: 18px; color: #0f172a; }
+        .footer { background-color: #1e293b; color: #cbd5e1; text-align: center; padding: 20px; font-size: 12px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>¡Gracias por tu compra, <span th:text="${order.customerName}">Cliente</span>!</h1>
+        </div>
+        <div class="content">
+            <p>Tu pedido ha sido procesado con éxito y estamos preparando tus productos para el envío. A continuación, encontrarás los detalles de tu compra.</p>
+            
+            <div class="order-details">
+                <strong>Número de Pedido:</strong> <span th:text="${order.orderId}">#000000</span><br>
+                <strong>Estado:</strong> <span th:text="${order.status}">CONFIRMADO</span>
+            </div>
+
+            <table class="items-table">
+                <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Cant.</th>
+                        <th>SKU</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="item : ${order.items}">
+                        <td th:text="${item.productName}">Nombre del Producto</td>
+                        <td th:text="${item.quantity}">1</td>
+                        <td th:text="${item.sku}">SKU-001</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="text-align: right; padding-top: 20px;"><strong>Total:</strong></td>
+                        <td class="total-row" style="padding-top: 20px;" th:text="'€' + ${order.totalAmount}">€0.00</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <p style="margin-top: 30px;">Si tienes alguna pregunta sobre tu pedido, no dudes en contactar con nuestro equipo de soporte.</p>
+        </div>
+        <div class="footer">
+            &copy; 2026 PetLogiLink Logistics. Todos los derechos reservados.<br>
+            Este es un correo generado automáticamente de manera asíncrona.
+        </div>
+    </div>
+</body>
+</html>
