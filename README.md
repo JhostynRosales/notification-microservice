@@ -1,5 +1,7 @@
 # Notification Microservice — Arquitectura Orientada a Eventos
 
+*🇬🇧 [Read in English](./README_EN.md)*
+
 ![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.2.5-brightgreen.svg)
 ![Java](https://img.shields.io/badge/Java-17-blue.svg)
 ![RabbitMQ](https://img.shields.io/badge/RabbitMQ-Message%20Broker-FF6600.svg)
